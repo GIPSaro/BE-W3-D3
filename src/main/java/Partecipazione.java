@@ -1,0 +1,77 @@
+import utilities.Stato;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "partecipazioni")
+public class Partecipazione {
+    @Id
+    @GeneratedValue
+    private long id;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_persona")
+    private Persona persona;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_evento")
+    private Evento evento;
+    @Enumerated(EnumType.STRING)
+    private Stato stato;
+
+    // CONSTRUCTORS
+    public Partecipazione() {
+    }
+
+    ;
+
+    public Partecipazione(Persona persona, Evento evento, Stato stato) {
+        this.persona = persona;
+        this.evento = evento;
+        this.stato = stato;
+    }
+
+    // OVERRIDES
+
+    @Override
+    public String toString() {
+        return "Partecipazione{" +
+                "id=" + id +
+                ", persone=" + persona +
+                ", evento=" + evento +
+                ", stato=" + stato +
+                '}';
+    }
+
+
+    // GETTERS
+
+
+    public long getId() {
+        return id;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public Evento getEvento() {
+        return evento;
+    }
+
+    // SETTERS
+
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
+
+    public Stato getStato() {
+        return stato;
+    }
+
+    public void setStato(Stato stato) {
+        this.stato = stato;
+    }
+}
